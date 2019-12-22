@@ -1,4 +1,4 @@
-package am.mandiri.movie.feature
+package am.mandiri.movie.feature.genre
 
 import am.mandiri.movie.R
 import am.mandiri.movie.base.BaseActivity
@@ -27,6 +27,8 @@ class GenreActivity : BaseActivity() {
         setupRecyclerView()
         setupRefreshLayout()
 
+        presenter.fetch()
+
         observe(viewModel.error, this::whenErrorChanged)
         observe(viewModel.genreList, this::whenGenreListChanged)
     }
@@ -52,11 +54,6 @@ class GenreActivity : BaseActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.fetch()
-    }
-
     private fun whenErrorChanged(reason: String) {
         srlGenre.isRefreshing = false
         adapter.footerLayout = if (adapter.items.count() == 0) R.layout.empty else R.layout.nothing
@@ -67,6 +64,9 @@ class GenreActivity : BaseActivity() {
         srlGenre.isRefreshing = false
         adapter.items = billingList
         adapter.footerLayout = if (adapter.items.count() == 0) R.layout.empty else R.layout.nothing
+        if (adapter.items.count() <= 20) {
+            rvGenre.scrollToPosition(0)
+        }
     }
 
 }

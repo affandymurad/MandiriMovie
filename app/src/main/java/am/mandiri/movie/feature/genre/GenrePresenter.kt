@@ -1,6 +1,5 @@
-package am.mandiri.movie.feature
+package am.mandiri.movie.feature.genre
 
-import am.mandiri.movie.model.Genre
 import am.mandiri.movie.model.GenreResponse
 import am.mandiri.movie.repository.RepositoryInstance
 import am.mandiri.movie.repository.retrofit.RetrofitRepository.token

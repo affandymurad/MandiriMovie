@@ -1,4 +1,4 @@
-package am.mandiri.movie.feature
+package am.mandiri.movie.feature.genre
 
 import am.mandiri.movie.model.Genre
 import am.mandiri.movie.model.GenreResponse
