@@ -74,7 +74,7 @@ class DetailActivity : BaseActivity() {
         return when (item.itemId) {
             // Respond to the action bar's Up/Home button
             android.R.id.home -> {
-                finish()
+                onBackPressed()
                 true
             }
             else -> {
