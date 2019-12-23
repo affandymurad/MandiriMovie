@@ -66,9 +66,8 @@ object RetrofitRepository : Repository {
         ): Observable<MoviesDetailResponse>
 
         @GET("movie/{id}/reviews")
-        fun getMovieReview(
-            @Query("api_key") api: String,
-            @Path("id") id: String
+        fun getMovieReview(@Path("id") id: String,
+            @Query("api_key") api: String
         ): Observable<MovieReviewResponse>
     }
 
@@ -111,7 +110,7 @@ object RetrofitRepository : Repository {
     }
 
     override fun movieReview(token: String, id: Int): Observable<MovieReviewResponse> {
-        return instance.getMovieReview(token, id.toString())
+        return instance.getMovieReview(id.toString(), token)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { it }

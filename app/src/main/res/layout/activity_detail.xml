@@ -190,13 +190,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/cvMovieDetailSinopsis" />
 
             <TextView
-                android:id="@+id/tvEmpty"
+                android:id="@+id/tvEmptyVideo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="8dp"
                 android:text="@string/none"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvVideo"/>
@@ -205,12 +204,50 @@
                 android:id="@+id/rvVideos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvVideo"/>
 
+            <TextView
+                android:id="@+id/tvReview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:drawableStart="@drawable/ic_review"
+                android:drawablePadding="8dp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/review"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvVideos" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReviews"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReview"/>
+
+
+            <TextView
+                android:id="@+id/tvEmptyReview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:visibility="gone"
+                android:text="@string/none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReview"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

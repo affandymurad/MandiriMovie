@@ -10,6 +10,8 @@ class DetailViewModel : ViewModel(), DetailPresenter.State {
 
     val movieDetails = MutableLiveData<MoviesDetailResponse>()
 
+    val movieReviewResponse = MutableLiveData<MovieReviewResponse>()
+
     override fun error(reason: String) {
         error.value = reason
     }
@@ -17,5 +19,10 @@ class DetailViewModel : ViewModel(), DetailPresenter.State {
     override fun movieDetailFetched(movieDetail: MoviesDetailResponse) {
         movieDetails.value = movieDetail
     }
+
+    override fun movieReviewFetched(movieReview: MovieReviewResponse) {
+        movieReviewResponse.value = movieReview
+    }
+
 
 }

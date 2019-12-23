@@ -5,6 +5,7 @@ import am.mandiri.movie.base.BaseActivity
 import am.mandiri.movie.base.CustomLinearLayoutManager
 import am.mandiri.movie.model.Country
 import am.mandiri.movie.model.Genre
+import am.mandiri.movie.model.MovieReviewResponse
 import am.mandiri.movie.model.MoviesDetailResponse
 import am.mandiri.movie.repository.retrofit.RetrofitRepository.baseImage
 import android.content.Context
@@ -28,6 +29,8 @@ class DetailActivity : BaseActivity() {
 
     private val vAdapter = VideoAdapter()
 
+    private val rAdapter = ReviewAdapter()
+
     companion object {
         var titles = ""
         var id : Int = 0
@@ -50,6 +53,7 @@ class DetailActivity : BaseActivity() {
 
         observe(viewModel.error, this::whenErrorChanged)
         observe(viewModel.movieDetails, this::whenMovieListChanged)
+        observe(viewModel.movieReviewResponse, this::whenReviewsListChanged)
     }
 
     override fun onResume() {
@@ -117,16 +121,26 @@ class DetailActivity : BaseActivity() {
         tvDetailMovieGenre.text = setAllGenres(movieDetail.genres ?: arrayListOf())
         tvDetailMovieSinopsis.text = movieDetail.overview ?: "-"
         setUpVideos(movieDetail)
-
     }
 
     private fun setUpVideos(movieDetail: MoviesDetailResponse) {
+        presenter.fetchReview()
         rvVideos.layoutManager = CustomLinearLayoutManager(this)
         rvVideos.adapter = vAdapter
         vAdapter.footerLayout = R.layout.nothing
-        if (vAdapter.items.count() == 0) tvEmpty.visibility = View.VISIBLE else tvEmpty.visibility = View.GONE
         vAdapter.items = movieDetail.videos?.results ?: arrayListOf()
+        if (vAdapter.items.count() == 0) tvEmptyVideo.visibility = View.VISIBLE else tvEmptyVideo.visibility = View.GONE
     }
+
+    private fun whenReviewsListChanged(movieReview: MovieReviewResponse) {
+        srlDetail.isRefreshing = false
+        rvReviews.layoutManager = CustomLinearLayoutManager(this)
+        rvReviews.adapter = rAdapter
+        rAdapter.footerLayout = R.layout.nothing
+        rAdapter.items = movieReview.results ?: arrayListOf()
+        if (rAdapter.items.count() == 0) tvEmptyReview.visibility = View.VISIBLE else tvEmptyReview.visibility = View.GONE
+    }
+
 
     private fun setAllFlagEmoticonCountries(countries: List<Country>): String {
         val country = StringBuilder()

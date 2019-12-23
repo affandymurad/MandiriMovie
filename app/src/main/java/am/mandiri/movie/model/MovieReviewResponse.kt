@@ -7,7 +7,7 @@ data class MovieReviewResponse(val results: List<Review>) : Serializable {}
 
 data class Review(
     @SerializedName("author")
-    var author: Int? = null,
+    var author: String? = null,
 
     @SerializedName("content")
     var content: String ?= null,

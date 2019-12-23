@@ -12,6 +12,7 @@
     <string name="network">Network</string>
     <string name="sinopsis">Summary</string>
     <string name="video">Videos</string>
+    <string name="review">Reviews</string>
 
     <string name="menit">%1d Minutes</string>
 </resources>

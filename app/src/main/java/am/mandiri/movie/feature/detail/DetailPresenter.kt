@@ -1,6 +1,7 @@
 package am.mandiri.movie.feature.detail
 
 import am.mandiri.movie.model.GenreResponse
+import am.mandiri.movie.model.MovieReviewResponse
 import am.mandiri.movie.model.MoviesDetailResponse
 import am.mandiri.movie.repository.Repository
 import am.mandiri.movie.repository.RepositoryInstance
@@ -24,10 +25,18 @@ class DetailPresenter(private val state: State) {
 
     }
 
+    fun fetchReview() {
+        onGoingRequest?.dispose()
+        onGoingRequest = RepositoryInstance.default.movieReview(token, id).subscribe({state.movieReviewFetched(it)},{state.error(it.localizedMessage ?: "Unknown")})
+
+    }
+
     interface State {
         fun error(reason: String)
 
         fun movieDetailFetched(movieDetail: MoviesDetailResponse)
+
+        fun movieReviewFetched(movieReview: MovieReviewResponse)
     }
 }
 
