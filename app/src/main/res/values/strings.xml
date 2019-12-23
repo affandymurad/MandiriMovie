@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Mandiri Movie</string>
     <string name="item">item</string>
+    <string name="none">-</string>
+
+    <string name="genre">Genre</string>
+    <string name="duration">Duration</string>
+    <string name="original_title">Ori. Title</string>
+    <string name="original_language">Ori. Language</string>
+    <string name="country">Country</string>
+    <string name="company">Company</string>
+    <string name="network">Network</string>
+    <string name="sinopsis">Summary</string>
+
+    <string name="menit">%1d Minutes</string>
 </resources>

@@ -27,7 +27,7 @@ class MoviePresenter(private val state: State) {
                 state.paginationHasEnded()
                 return@subscribe
             }
-            state.error(it.localizedMessage ?: "Unknonw")})
+            state.error(it.localizedMessage ?: "Unknown")})
 
     }
 

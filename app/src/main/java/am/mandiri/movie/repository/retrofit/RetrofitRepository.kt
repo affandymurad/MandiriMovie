@@ -59,8 +59,8 @@ object RetrofitRepository : Repository {
 
         @GET("movie/{id}")
         fun getMovieDetail(
-            @Query("api_key") api: String,
             @Path("id") id: String,
+            @Query("api_key") api: String,
             @Query("append_to_response") appendToResponse: String
         ): Observable<MoviesDetailResponse>
 
@@ -103,7 +103,7 @@ object RetrofitRepository : Repository {
         id: Int,
         append_to_response: String
     ): Observable<MoviesDetailResponse> {
-        return instance.getMovieDetail(token, id.toString(), append_to_response)
+        return instance.getMovieDetail(id.toString(),token, append_to_response)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { it }

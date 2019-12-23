@@ -94,12 +94,9 @@ class MovieActivity : BaseActivity() {
         srlGenre?.setOnRefreshListener {
             presenter.fetch()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
         presenter.fetch()
     }
+
 
     private fun whenErrorChanged(reason: String) {
         srlGenre.isRefreshing = false
