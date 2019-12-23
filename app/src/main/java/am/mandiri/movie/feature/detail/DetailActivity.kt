@@ -2,6 +2,7 @@ package am.mandiri.movie.feature.detail
 
 import am.mandiri.movie.R
 import am.mandiri.movie.base.BaseActivity
+import am.mandiri.movie.base.CustomLinearLayoutManager
 import am.mandiri.movie.model.Country
 import am.mandiri.movie.model.Genre
 import am.mandiri.movie.model.MoviesDetailResponse
@@ -10,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -23,6 +25,8 @@ class DetailActivity : BaseActivity() {
     private lateinit var viewModel: DetailViewModel
 
     private lateinit var presenter: DetailPresenter
+
+    private val vAdapter = VideoAdapter()
 
     companion object {
         var titles = ""
@@ -112,6 +116,16 @@ class DetailActivity : BaseActivity() {
         tvDetailNetworkDuration.text =  getString(R.string.menit, movieDetail.runtime ?: 0)
         tvDetailMovieGenre.text = setAllGenres(movieDetail.genres ?: arrayListOf())
         tvDetailMovieSinopsis.text = movieDetail.overview ?: "-"
+        setUpVideos(movieDetail)
+
+    }
+
+    private fun setUpVideos(movieDetail: MoviesDetailResponse) {
+        rvVideos.layoutManager = CustomLinearLayoutManager(this)
+        rvVideos.adapter = vAdapter
+        vAdapter.footerLayout = R.layout.nothing
+        if (vAdapter.items.count() == 0) tvEmpty.visibility = View.VISIBLE else tvEmpty.visibility = View.GONE
+        vAdapter.items = movieDetail.videos?.results ?: arrayListOf()
     }
 
     private fun setAllFlagEmoticonCountries(countries: List<Country>): String {

@@ -25,6 +25,7 @@ object RetrofitRepository : Repository {
     const val token = "f002c90cf2d54e6b83801cbe9408e82b"
     const val baseURL = "https://api.themoviedb.org/3/"
     const val baseImage = "http://image.tmdb.org/t/p/w500"
+    const val youtubeKey = "AIzaSyC320_WDKC2bbdwep2_WQT3Mj-dA_Pw_-o"
 
     private val interceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

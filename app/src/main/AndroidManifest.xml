@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".feature.movie.MovieActivity" android:configChanges="orientation|screenSize"/>
         <activity android:name=".feature.detail.DetailActivity" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".feature.detail.YoutubeActivity" android:configChanges="orientation|screenSize"/>
     </application>
 
 </manifest>
